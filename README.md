@@ -1,0 +1,2 @@
+# techronical
+Tech News 
