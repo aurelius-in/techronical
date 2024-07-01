@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const issueParam = new URLSearchParams(window.location.search).get('issue');
     const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
-    
+
     function loadIssueArticles(category) {
         fetch(`assets/articles/${category}${issueParam}.json`)
             .then(response => response.json())
