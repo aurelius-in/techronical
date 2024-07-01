@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentIssue = '2407'; // Change this to dynamically get the latest issue
     let loadedArticles = {};
 
-    console.log(`Issue Param: ${issueParam}`);  // Debugging
-
     function loadArticles(category, articles) {
         const container = document.getElementById(`${category}-articles`);
         articles.forEach(article => {
             const articleDiv = document.createElement('div');
             articleDiv.classList.add('article');
             articleDiv.innerHTML = `
-                <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
-                <p class="article-author">By ${article.author}</p>
+                <h3>${article.title}</h3>
+                <p>By ${article.author}</p>
+                <img src="${article.image}" alt="${article.title}">
+                <p>${article.body}</p>
             `;
             container.appendChild(articleDiv);
         });
@@ -35,63 +35,35 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error(`Error fetching articles for ${category}:`, error));
     }
 
-    function showFullArticle(category, title) {
-        fetch(`assets/articles/${category}${currentIssue}.json`)
+    function loadCovers() {
+        fetch('assets/covers/thumbs/issues.json')
             .then(response => response.json())
-            .then(data => {
-                const article = data.find(article => article.title === title);
-                if (article) {
-                    const articleContainer = document.getElementById('article-container');
-                    articleContainer.style.display = 'block';
-                    articleContainer.innerHTML = `
-                        <div class="full-article">
-                            <h2>${article.title}</h2>
-                            <p>By ${article.author}</p>
-                            <img src="${article.image}" alt="${article.title}">
-                            <p>${article.body.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
-                        </div>
-                    `;
-                    document.getElementById('issue-container').style.display = 'none';
-                }
-            })
-            .catch(error => console.error('Error fetching full article:', error));
-    }
-
-    function loadBooks() {
-        fetch(`assets/articles/books${currentIssue}.json`)
-            .then(response => response.json())
-            .then(books => {
-                const issueContainer = document.getElementById('issue-container');
-                const booksSection = document.createElement('div');
-                booksSection.classList.add('category');
-                booksSection.innerHTML = `<h2>Best New Tech Books</h2>`;
-                books.forEach(book => {
-                    const bookDiv = document.createElement('div');
-                    bookDiv.classList.add('article');
-                    bookDiv.innerHTML = `
-                        <h3 class="article-title">${book.title}</h3>
-                        <p class="article-author">By ${book.author}</p>
-                        <img src="${book.image}" alt="${book.title}">
-                        <p>${book.description.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
-                    `;
-                    booksSection.appendChild(bookDiv);
+            .then(covers => {
+                const container = document.getElementById('covers-container');
+                covers.forEach(cover => {
+                    const coverDiv = document.createElement('div');
+                    coverDiv.classList.add('cover');
+                    coverDiv.innerHTML = `<img src="assets/covers/thumbs/${cover}" alt="${cover}">`;
+                    coverDiv.addEventListener('click', () => {
+                        window.location.href = `issue.html?issue=${cover.split('.')[0]}`;
+                    });
+                    container.appendChild(coverDiv);
                 });
-                issueContainer.appendChild(booksSection);
             })
-            .catch(error => console.error('Error fetching books:', error));
+            .catch(error => console.error('Error fetching covers:', error));
     }
 
     categories.forEach(category => {
         fetchArticles(category);
     });
 
-    loadBooks();
+    loadCovers();
 
     document.getElementById('latest-issue').addEventListener('click', () => {
-        window.location.href = 'index.html';
+        document.getElementById('categories-container').scrollIntoView({ behavior: 'smooth' });
     });
 
     document.getElementById('archives').addEventListener('click', () => {
-        window.location.href = 'index.html#archives';
+        document.getElementById('covers-container').scrollIntoView({ behavior: 'smooth' });
     });
 });
