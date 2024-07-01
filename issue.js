@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const issueParam = new URLSearchParams(window.location.search).get('issue');
-    const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
+    const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health', 'books'];
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     function formatDate(issueParam) {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const issueContainer = document.getElementById('issue-container');
                 const booksSection = document.createElement('div');
                 booksSection.classList.add('category');
-                booksSection.innerHTML = `<h2>Best New Tech Books</h2>`;
+                booksSection.innerHTML = `<img src="assets/logos/books.png" alt="books"><h2>Best New Tech Books</h2>`;
                 books.forEach(book => {
                     const bookDiv = document.createElement('div');
                     bookDiv.classList.add('article');
@@ -83,8 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     categories.forEach(category => {
-        loadIssueArticles(category);
+        if (category === 'books') {
+            loadBooks();
+        } else {
+            loadIssueArticles(category);
+        }
     });
-
-    loadBooks();
 });
