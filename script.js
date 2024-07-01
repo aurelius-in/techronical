@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     const coverDiv = document.createElement('div');
                     coverDiv.classList.add('cover');
                     coverDiv.innerHTML = `<img src="assets/covers/thumbs/${cover}" alt="${cover}">`;
+                    coverDiv.addEventListener('click', () => {
+                        window.location.href = `issue.html?issue=${cover.split('.')[0]}`;
+                    });
                     container.appendChild(coverDiv);
                 });
             })
