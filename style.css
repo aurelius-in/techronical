@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #e3f2fd; /* Light soft baby blue background for header */
     padding: 20px;
     text-align: center;
 }
@@ -41,7 +41,7 @@ nav {
 
 .menu a {
     text-decoration: none;
-    color: #fff;
+    color: #800020; /* Burgundy */
     font-weight: bold;
 }
 
@@ -65,6 +65,15 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+.cover {
+    text-align: center;
+}
+
+.cover-date {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .category, .cover {
@@ -97,6 +106,15 @@ main {
 
 .article-author, .article p {
     font-size: 18px;
+}
+
+.read-more-button {
+    display: block;
+    margin-top: 10px;
+    color: #800020;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: right;
 }
 
 .view-more-button {
