@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const issueParam = new URLSearchParams(window.location.search).get('issue');
     const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     console.log(`Issue Param: ${issueParam}`);  // Debugging
+
+    function formatDate(issueParam) {
+        const monthIndex = parseInt(issueParam.slice(2, 4), 10) - 1;
+        const year = `20${issueParam.slice(0, 2)}`;
+        return `${monthNames[monthIndex]} ${year}`;
+    }
 
     function loadIssueArticles(category) {
         fetch(`assets/articles/${category}${issueParam}.json`)
@@ -16,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(`Loaded data for ${category}:`, data);  // Debugging
                 const issueContainer = document.getElementById('issue-container');
                 data.forEach(article => {
-                    const date = `${issueParam.slice(2)} 20${issueParam.slice(0, 2)}`;
+                    const date = formatDate(issueParam);
                     const articleDiv = document.createElement('div');
                     articleDiv.classList.add('article');
                     articleDiv.innerHTML = `
