@@ -1,0 +1,26 @@
+[
+    {
+        "title": "AI 2041: Ten Visions for Our Future",
+        "author": "Kai-Fu Lee and Chen Qiufan",
+        "description": "A groundbreaking book that blends science fiction and technological expertise to explore the future of AI over the next two decades. The authors present ten captivating narratives that illustrate the profound changes AI will bring to our world.",
+        "image": "assets/images/ai2041.png"
+    },
+    {
+        "title": "The Age of A.I.: And Our Human Future",
+        "author": "Henry A. Kissinger, Eric Schmidt, and Daniel Huttenlocher",
+        "description": "This book examines the transformative effects of AI on human society, politics, and culture. The authors discuss the opportunities and challenges posed by AI advancements and offer insights into how we can navigate this new era.",
+        "image": "assets/images/age_of_ai.png"
+    },
+    {
+        "title": "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "author": "Walter Isaacson",
+        "description": "Walter Isaacson chronicles the history of the digital revolution, focusing on the remarkable individuals who pioneered modern computing and the internet. This book provides an engaging narrative of innovation and collaboration in technology.",
+        "image": "assets/images/the_innovators.png"
+    },
+    {
+        "title": "Artificial Intelligence: A Guide for Thinking Humans",
+        "author": "Melanie Mitchell",
+        "description": "Melanie Mitchell offers a comprehensive and accessible introduction to AI, exploring its history, current developments, and future potential. She addresses common misconceptions and provides a nuanced view of the capabilities and limitations of AI.",
+        "image": "assets/images/ai_guide.png"
+    }
+]
