@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
-    const currentIssue = '2407'; // Change this to the current issue date
+    const currentIssue = '2407'; // Change this to dynamically get the latest issue
+    let loadedArticles = {};
 
     function loadArticles(category, articles) {
         const container = document.getElementById(`${category}-articles`);
@@ -21,50 +22,45 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`assets/articles/${category}${currentIssue}.json`)
             .then(response => response.json())
             .then(data => {
+                loadedArticles[category] = data;
+                const categoryContainer = document.createElement('div');
+                categoryContainer.classList.add('category');
+                categoryContainer.innerHTML = `
+                    <h2>${category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+                    <div class="articles-container" id="${category}-articles"></div>
+                `;
+                document.getElementById('categories-container').appendChild(categoryContainer);
                 loadArticles(category, data);
             })
             .catch(error => console.error(`Error fetching articles for ${category}:`, error));
     }
 
-    function loadBooks() {
-        fetch('assets/articles/books2407.json')
-            .then(response => response.json())
-            .then(books => {
-                const container = document.getElementById('books-articles');
-                books.forEach(book => {
-                    const bookDiv = document.createElement('div');
-                    bookDiv.classList.add('article');
-                    bookDiv.innerHTML = `
-                        <h3>${book.title}</h3>
-                        <p>By ${book.author}</p>
-                        <img src="${book.image}" alt="${book.title}">
-                        <p>${book.description}</p>
-                    `;
-                    container.appendChild(bookDiv);
-                });
-            })
-            .catch(error => console.error('Error fetching books:', error));
-    }
-
-    function loadThumbnails() {
+    function loadCovers() {
         fetch('assets/covers/thumbs/issues.json')
             .then(response => response.json())
-            .then(issues => {
-                const container = document.getElementById('thumbnails-container');
-                issues.forEach(issue => {
-                    const thumbnailDiv = document.createElement('div');
-                    thumbnailDiv.classList.add('thumbnail');
-                    thumbnailDiv.innerHTML = `<img src="assets/covers/thumbs/${issue}.png" alt="Issue ${issue}">`;
-                    container.appendChild(thumbnailDiv);
+            .then(covers => {
+                const container = document.getElementById('covers-container');
+                covers.forEach(cover => {
+                    const coverDiv = document.createElement('div');
+                    coverDiv.classList.add('cover');
+                    coverDiv.innerHTML = `<img src="assets/covers/thumbs/${cover}" alt="${cover}">`;
+                    container.appendChild(coverDiv);
                 });
             })
-            .catch(error => console.error('Error fetching thumbnails:', error));
+            .catch(error => console.error('Error fetching covers:', error));
     }
 
     categories.forEach(category => {
         fetchArticles(category);
     });
 
-    loadBooks();
-    loadThumbnails();
+    loadCovers();
+
+    document.getElementById('latest-issue').addEventListener('click', () => {
+        document.getElementById('categories-container').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('archives').addEventListener('click', () => {
+        document.getElementById('covers-container').scrollIntoView({ behavior: 'smooth' });
+    });
 });
