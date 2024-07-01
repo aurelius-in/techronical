@@ -11,52 +11,18 @@
         <img src="assets/logos/techronical.png" alt="Techronical" class="logo">
         <nav>
             <ul class="menu">
-                <li><a href="#latest">Latest Issue</a></li>
-                <li><a href="#archives">Archives</a></li>
+                <li><a href="#" id="latest-issue">Latest Issue</a></li>
+                <li><a href="#" id="archives">Archives</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="latest">
-            <h1>Latest Issue</h1>
-            <div class="categories-container">
-                <div class="category" id="biz">
-                    <h2>Biz</h2>
-                    <div class="articles-container" id="biz-articles"></div>
-                </div>
-                <div class="category" id="ai">
-                    <h2>AI</h2>
-                    <div class="articles-container" id="ai-articles"></div>
-                </div>
-                <div class="category" id="security">
-                    <h2>Security</h2>
-                    <div class="articles-container" id="security-articles"></div>
-                </div>
-                <div class="category" id="gadgets">
-                    <h2>Gadgets</h2>
-                    <div class="articles-container" id="gadgets-articles"></div>
-                </div>
-                <div class="category" id="robotics">
-                    <h2>Robotics</h2>
-                    <div class="articles-container" id="robotics-articles"></div>
-                </div>
-                <div class="category" id="health">
-                    <h2>Health</h2>
-                    <div class="articles-container" id="health-articles"></div>
-                </div>
-                <div class="category" id="books">
-                    <h2>Best New Tech Books</h2>
-                    <div class="articles-container" id="books-articles"></div>
-                </div>
-            </div>
-            <button id="view-more-button" class="view-more-button">View More</button>
-        </section>
-        <section id="archives">
-            <h1>Archives</h1>
-            <div class="thumbnails-container" id="thumbnails-container">
-                <!-- Thumbnails will be inserted here by JavaScript -->
-            </div>
-        </section>
+        <div class="categories-container" id="categories-container">
+            <!-- Content will be loaded dynamically here -->
+        </div>
+        <div class="covers-container" id="covers-container">
+            <!-- Covers will be loaded dynamically here -->
+        </div>
     </main>
     <script src="script.js"></script>
 </body>
