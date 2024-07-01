@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
-    const currentIssue = '2407'; // Change this to dynamically get the latest issue
+    const currentIssue = '2407'; // This should dynamically get the latest issue
     let loadedArticles = {};
-
-    console.log(`Issue Param: ${currentIssue}`);  // Debugging
 
     function loadArticles(category, articles) {
         const container = document.getElementById(`${category}-articles`);
