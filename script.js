@@ -1,43 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const issueParam = new URLSearchParams(window.location.search).get('issue');
     const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
+    const currentIssue = '2407'; // Change this to dynamically get the latest issue
+    let loadedArticles = {};
 
     console.log(`Issue Param: ${issueParam}`);  // Debugging
 
-    function loadIssueArticles(category) {
-        fetch(`assets/articles/${category}${issueParam}.json`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(`Loaded data for ${category}:`, data);  // Debugging
-                const issueContainer = document.getElementById('issue-container');
-                data.forEach(article => {
-                    const articleDiv = document.createElement('div');
-                    articleDiv.classList.add('article');
-                    articleDiv.innerHTML = `
-                        <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
-                        <p class="article-author">By ${article.author}</p>
-                    `;
-                    issueContainer.appendChild(articleDiv);
-                });
+    function loadArticles(category, articles) {
+        const container = document.getElementById(`${category}-articles`);
+        articles.forEach(article => {
+            const articleDiv = document.createElement('div');
+            articleDiv.classList.add('article');
+            articleDiv.innerHTML = `
+                <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
+                <p class="article-author">By ${article.author}</p>
+            `;
+            container.appendChild(articleDiv);
+        });
+    }
 
-                document.querySelectorAll('.article-title').forEach(title => {
-                    title.addEventListener('click', function() {
-                        const category = this.getAttribute('data-category');
-                        const title = this.getAttribute('data-title');
-                        showFullArticle(category, title);
-                    });
-                });
+    function fetchArticles(category) {
+        fetch(`assets/articles/${category}${currentIssue}.json`)
+            .then(response => response.json())
+            .then(data => {
+                loadedArticles[category] = data;
+                const categoryContainer = document.createElement('div');
+                categoryContainer.classList.add('category');
+                categoryContainer.innerHTML = `
+                    <h2>${category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+                    <div class="articles-container" id="${category}-articles"></div>
+                `;
+                document.getElementById('categories-container').appendChild(categoryContainer);
+                loadArticles(category, data);
             })
             .catch(error => console.error(`Error fetching articles for ${category}:`, error));
     }
 
     function showFullArticle(category, title) {
-        fetch(`assets/articles/${category}${issueParam}.json`)
+        fetch(`assets/articles/${category}${currentIssue}.json`)
             .then(response => response.json())
             .then(data => {
                 const article = data.find(article => article.title === title);
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h2>${article.title}</h2>
                             <p>By ${article.author}</p>
                             <img src="${article.image}" alt="${article.title}">
-                            <p>${article.body.replace(/\n/g, '<br>')}</p>
+                            <p>${article.body.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
                         </div>
                     `;
                     document.getElementById('issue-container').style.display = 'none';
@@ -59,13 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadBooks() {
-        fetch(`assets/articles/books${issueParam}.json`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+        fetch(`assets/articles/books${currentIssue}.json`)
+            .then(response => response.json())
             .then(books => {
                 const issueContainer = document.getElementById('issue-container');
                 const booksSection = document.createElement('div');
@@ -78,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h3 class="article-title">${book.title}</h3>
                         <p class="article-author">By ${book.author}</p>
                         <img src="${book.image}" alt="${book.title}">
-                        <p>${book.description}</p>
+                        <p>${book.description.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
                     `;
                     booksSection.appendChild(bookDiv);
                 });
@@ -88,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     categories.forEach(category => {
-        loadIssueArticles(category);
+        fetchArticles(category);
     });
 
     loadBooks();
