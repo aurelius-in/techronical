@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadArticles(category, articles) {
         const container = document.getElementById(`${category}-articles`);
         articles.forEach(article => {
-            const date = `${currentIssue.slice(2)} 20${currentIssue.slice(0, 2)}`;
+            const date = formatDate(currentIssue);
             const articleDiv = document.createElement('div');
             articleDiv.classList.add('article');
             articleDiv.innerHTML = `
@@ -42,11 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const container = document.getElementById('covers-container');
                 container.innerHTML = '';  // Clear any existing covers
                 covers.slice(0, 12).forEach(cover => {
+                    const issue = cover.replace('-', '').split('.')[0]; // Remove '-' and extension
                     const coverDiv = document.createElement('div');
                     coverDiv.classList.add('cover');
                     coverDiv.innerHTML = `<img src="assets/covers/thumbs/${cover}" alt="${cover}">`;
                     coverDiv.addEventListener('click', () => {
-                        window.location.href = `issue.html?issue=${cover.split('.')[0]}`;
+                        window.location.href = `issue.html?issue=${issue}`;
                     });
                     container.appendChild(coverDiv);
                 });
@@ -57,11 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     viewMoreButton.addEventListener('click', () => {
                         container.innerHTML = '';
                         covers.forEach(cover => {
+                            const issue = cover.replace('-', '').split('.')[0]; // Remove '-' and extension
                             const coverDiv = document.createElement('div');
                             coverDiv.classList.add('cover');
                             coverDiv.innerHTML = `<img src="assets/covers/thumbs/${cover}" alt="${cover}">`;
                             coverDiv.addEventListener('click', () => {
-                                window.location.href = `issue.html?issue=${cover.split('.')[0]}`;
+                                window.location.href = `issue.html?issue=${issue}`;
                             });
                             container.appendChild(coverDiv);
                         });
@@ -79,11 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function formatDate(issueParam) {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthIndex = parseInt(issueParam.slice(2, 4), 10) - 1;
+        const year = `20${issueParam.slice(0, 2)}`;
+        return `${monthNames[monthIndex]} ${year}`;
+    }
+
     loadLatestIssue();
 
     document.getElementById('archives').addEventListener('click', () => {
-        document.getElementById('categories-container').style.display = 'none';
-        document.getElementById('covers-container').style.display = 'flex';
-        loadCovers();
-    });
-});
+        document.getElementById('categories-container').style.display = '
