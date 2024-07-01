@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadArticles(category, articles) {
         const container = document.getElementById(`${category}-articles`);
         articles.forEach(article => {
-            const date = `${issueParam.slice(2)} 20${issueParam.slice(0, 2)}`;
+            const date = `${currentIssue.slice(2)} 20${currentIssue.slice(0, 2)}`;
             const articleDiv = document.createElement('div');
             articleDiv.classList.add('article');
             articleDiv.innerHTML = `
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(covers => {
                 const container = document.getElementById('covers-container');
+                container.innerHTML = '';  // Clear any existing covers
                 covers.slice(0, 12).forEach(cover => {
                     const coverDiv = document.createElement('div');
                     coverDiv.classList.add('cover');
@@ -72,13 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error fetching covers:', error));
     }
 
-    categories.forEach(category => {
-        fetchArticles(category);
-    });
+    function loadLatestIssue() {
+        categories.forEach(category => {
+            fetchArticles(category);
+        });
+    }
 
-    loadCovers();
+    loadLatestIssue();
 
     document.getElementById('archives').addEventListener('click', () => {
-        document.getElementById('covers-container').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('categories-container').style.display = 'none';
+        document.getElementById('covers-container').style.display = 'flex';
+        loadCovers();
     });
 });
