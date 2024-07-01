@@ -1,36 +1,71 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const thumbnailsContainer = document.getElementById('thumbnails-container');
-    const viewMoreButton = document.getElementById('view-more-button');
-    let issues = [];
-    let loadedIssues = 0;
-    const issuesPerPage = 12;
+    const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
+    const currentIssue = '2407'; // Change this to the current issue date
+    const articlesPerPage = 12;
+    let loadedArticles = {};
 
-    function loadIssues() {
-        const issuesToLoad = issues.slice(loadedIssues, loadedIssues + issuesPerPage);
-        issuesToLoad.forEach(issue => {
-            const thumbnailDiv = document.createElement('div');
-            thumbnailDiv.classList.add('thumbnail');
-            thumbnailDiv.innerHTML = `<img src="assets/covers/thumbs/${issue}" alt="Issue ${issue}">`;
-            thumbnailsContainer.appendChild(thumbnailDiv);
+    function loadArticles(category, articles) {
+        const container = document.getElementById(`${category}-articles`);
+        articles.forEach(article => {
+            const articleDiv = document.createElement('div');
+            articleDiv.classList.add('article');
+            articleDiv.innerHTML = `
+                <h3>${article.title}</h3>
+                <p>By ${article.author}</p>
+                <img src="${article.image}" alt="${article.title}">
+                <p>${article.body}</p>
+            `;
+            container.appendChild(articleDiv);
         });
-        loadedIssues += issuesPerPage;
-        if (loadedIssues >= issues.length) {
-            viewMoreButton.style.display = 'none';
-        }
     }
 
-    function fetchIssues() {
-        fetch('assets/covers/thumbs/issues.json')
+    function fetchArticles(category) {
+        fetch(`assets/articles/${category}${currentIssue}.json`)
             .then(response => response.json())
             .then(data => {
-                issues = data;
-                loadIssues();
+                loadedArticles[category] = data;
+                loadArticles(category, data.slice(0, articlesPerPage));
             })
-            .catch(error => console.error('Error fetching issues:', error));
+            .catch(error => console.error(`Error fetching articles for ${category}:`, error));
     }
 
-    viewMoreButton.addEventListener('click', loadIssues);
+    function loadMoreArticles() {
+        categories.forEach(category => {
+            if (loadedArticles[category]) {
+                const container = document.getElementById(`${category}-articles`);
+                const currentLength = container.childNodes.length;
+                const newArticles = loadedArticles[category].slice(currentLength, currentLength + articlesPerPage);
+                loadArticles(category, newArticles);
+            }
+        });
+    }
 
-    // Fetch issues and load the initial set
-    fetchIssues();
+    function loadBooks() {
+        fetch('assets/articles/books2407.json')
+            .then(response => response.json())
+            .then(books => {
+                const container = document.getElementById('books-articles');
+                books.forEach(book => {
+                    const bookDiv = document.createElement('div');
+                    bookDiv.classList.add('article');
+                    bookDiv.innerHTML = `
+                        <h3>${book.title}</h3>
+                        <p>By ${book.author}</p>
+                        <img src="${book.image}" alt="${book.title}">
+                        <p>${book.description}</p>
+                    `;
+                    container.appendChild(bookDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching books:', error));
+    }
+
+    categories.forEach(category => {
+        fetchArticles(category);
+    });
+
+    document.getElementById('view-more-button').addEventListener('click', loadMoreArticles);
+
+    // Fetch and load books
+    loadBooks();
 });
