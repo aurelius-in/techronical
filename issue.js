@@ -3,12 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    console.log(`Issue Param: ${issueParam}`);  // Debugging
-
     function formatDate(issueParam) {
         const monthIndex = parseInt(issueParam.slice(2, 4), 10) - 1;
         const year = `20${issueParam.slice(0, 2)}`;
         return `${monthNames[monthIndex]} ${year}`;
+    }
+
+    function truncateText(text, wordLimit) {
+        const words = text.split(' ');
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(' ') + '...';
+        }
+        return text;
     }
 
     function loadIssueArticles(category) {
@@ -20,19 +26,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(data => {
-                console.log(`Loaded data for ${category}:`, data);  // Debugging
                 const issueContainer = document.getElementById('issue-container');
                 data.forEach(article => {
                     const date = formatDate(issueParam);
                     const articleDiv = document.createElement('div');
                     articleDiv.classList.add('article');
+                    const truncatedBody = truncateText(article.body, 120);
                     articleDiv.innerHTML = `
+                        <img src="assets/logos/${category}.png" alt="${category}">
                         <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
                         <p class="article-author">By ${article.author}, ${date}</p>
-                        <img src="${article.image}" alt="${article.title}">
-                        <p>${article.body.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
+                        <p class="article-body">${truncatedBody}</p>
+                        <span class="read-more-button" data-fulltext="${article.body}">Read More</span>
                     `;
                     issueContainer.appendChild(articleDiv);
+                });
+
+                document.querySelectorAll('.read-more-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const fullText = this.getAttribute('data-fulltext');
+                        this.previousElementSibling.innerHTML = fullText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                        this.style.display = 'none';
+                    });
                 });
             })
             .catch(error => console.error(`Error fetching articles for ${category}:`, error));
