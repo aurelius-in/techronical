@@ -44,6 +44,10 @@ nav {
     width: 150px; /* Set the width for the navigation images */
 }
 
+.menu a {
+    text-decoration: none; /* Remove underline from links */
+}
+
 main {
     padding: 20px;
     display: flex;
@@ -129,6 +133,7 @@ main {
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
+    text-align: center;
 }
 
 .book img {
