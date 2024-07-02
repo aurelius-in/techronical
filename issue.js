@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
                         <p class="article-author">By ${article.author}, ${date}</p>
+                        <img src="${article.image}" alt="${article.title}">
                         <p class="article-body">${truncatedBody}</p>
                         <span class="read-more-button" data-fulltext="${article.body}">Read More</span>
                     `;
