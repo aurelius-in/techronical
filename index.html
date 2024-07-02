@@ -3,35 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techronical - Home</title>
+    <title>Techronical</title>
     <link rel="stylesheet" href="style.css">
     <script>
+        // Redirect to the latest issue
         document.addEventListener('DOMContentLoaded', function() {
-            // Fetch the latest issue dynamically
-            fetch('assets/covers/thumbs/issues.json')
-                .then(response => response.json())
-                .then(covers => {
-                    if (covers && covers.length > 0) {
-                        const latestIssue = covers[0].replace('-', '').split('.')[0]; // Get the most recent issue
-                        window.location.href = `issue.html?issue=${latestIssue}`;
-                    }
-                })
-                .catch(error => console.error('Error fetching covers:', error));
-
-            // Load shared navigation
-            fetch('nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('nav-container').innerHTML = data;
-                })
-                .catch(error => console.error('Error fetching navigation:', error));
+            window.location.href = 'issue.html?issue=2407';
         });
     </script>
 </head>
 <body>
-    <header class="banner">
-        <img src="assets/logos/techronical.png" alt="Techronical" class="logo">
-        <div id="nav-container"></div>
+    <header>
+        <img src="assets/logos/techronical.png" alt="Techronical Logo" class="logo">
+        <nav>
+            <ul class="menu">
+                <li><a href="issue.html?issue=2407"><img src="assets/logos/thismonth.png" alt="This Month"></a></li>
+                <li><a href="archives.html"><img src="assets/logos/archives.png" alt="Archives"></a></li>
+            </ul>
+        </nav>
     </header>
 </body>
 </html>
