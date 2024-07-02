@@ -161,7 +161,7 @@ main {
 }
 
 .header-banner img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -177,6 +177,10 @@ main {
     .books-container {
         flex-direction: column;
         align-items: center;
+    }
+
+    .header-banner img {
+        max-width: 100%;
     }
 }
 
