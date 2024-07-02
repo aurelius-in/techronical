@@ -1,59 +1,44 @@
-.article img {
-    max-width: 100%;
+.article {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.article img.article-image {
+    width: 100%;
     height: auto;
-}
-
-.article-title {
-    color: #800020; /* Burgundy */
-    font-size: 28px; /* Much larger font for headlines */
-    font-weight: 700;
-}
-
-.article-author, .article p {
-    font-size: 18px;
-}
-
-.read-more-button {
-    display: block;
     margin-top: 10px;
-    color: #800020;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: right;
+    margin-bottom: 10px;
 }
 
-.book img {
-    max-width: 100%;
-    height: auto;
+.book {
+    display: inline-block;
+    width: 45%;
+    margin: 2.5%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.book-title {
-    color: #800020; /* Burgundy */
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.book-author, .book p {
-    font-size: 16px;
-}
-
-.header-banner {
-    background-color: #e3f2fd;
+.books-container {
     text-align: center;
-    padding: 10px 0; /* Minimal padding on top and bottom */
-    width: 100%; /* Spanning the width of the visible screen */
-    margin-bottom: 20px; /* Space between banner and content */
 }
 
-.header-banner img {
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+.cover {
+    margin: 20px;
+    text-align: center;
 }
 
-.header-banner h2 {
-    margin: 0;
-    font-style: italic; /* Italic text for 'Top Reads' */
-    color: #800020;
+.cover img {
+    width: 100%;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.cover-date {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
