@@ -66,9 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const booksSection = document.createElement('div');
                 booksSection.classList.add('category');
                 booksSection.innerHTML = `
-                    <img src="assets/logos/books.png" alt="books">
-                    <h2>Best New Tech Books</h2>
-                    <div class="books-container">
+                    <div class="article">
+                        <img src="assets/logos/books.png" alt="books">
+                        <h2>Best New Tech Books</h2>
+                        <div class="books-container"></div>
                     </div>`;
                 books.forEach(book => {
                     const bookDiv = document.createElement('div');
