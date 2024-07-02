@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECHronical Archives</title>
     <link rel="stylesheet" href="style.css">
+    <title>TeChronical Archives</title>
 </head>
 <body>
     <header>
-        <img src="assets/logos/techronical.png" alt="TECHronical" class="logo">
+        <div class="banner">
+            <img src="assets/logos/techronical.png" alt="TeChronical" class="logo">
+        </div>
         <nav>
             <ul class="menu">
-                <li><a href="issue.html?issue=2407"><img src="assets/logos/thismonth.png" alt="This Month"></a></li>
+                <li><a href="index.html"><img src="assets/logos/thismonth.png" alt="This Month"></a></li>
                 <li><a href="archives.html"><img src="assets/logos/archives.png" alt="Archives"></a></li>
             </ul>
         </nav>
     </header>
-    <main id="archives-container">
-        <!-- Thumbnails loaded dynamically -->
+    <main>
+        <div class="covers-container" id="covers-container"></div>
+        <button class="view-more-button" id="view-more-button">View More</button>
     </main>
     <footer>
-        <p>&copy; 2024 TECHronical.online. All rights reserved.</p>
+        <p>&copy; 2024 TeChronical.online. All rights reserved.</p>
     </footer>
     <script src="archives.js"></script>
 </body>
