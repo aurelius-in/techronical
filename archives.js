@@ -1,46 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const coversContainer = document.querySelector('.covers-container');
-    const viewMoreButton = document.getElementById('view-more-button');
-    let currentIndex = 0;
-    const issuesPerLoad = 12;
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    function loadIssues() {
-        fetch('assets/thumbs/issues.json')
-            .then(response => response.json())
-            .then(issues => {
-                const fragment = document.createDocumentFragment();
-
-                for (let i = currentIndex; i < currentIndex + issuesPerLoad && i < issues.length; i++) {
-                    const issue = issues[i];
-                    const issueDiv = document.createElement('div');
-                    issueDiv.classList.add('cover');
-                    issueDiv.innerHTML = `
-                        <div class="cover-date">${formatDate(issue)}</div>
-                        <a href="issue.html?issue=${issue}">
-                            <img src="assets/covers/thumbs/${issue}.png" alt="Issue ${issue}">
-                        </a>
-                    `;
-                    fragment.appendChild(issueDiv);
-                }
-
-                coversContainer.appendChild(fragment);
-                currentIndex += issuesPerLoad;
-
-                if (currentIndex >= issues.length) {
-                    viewMoreButton.style.display = 'none';
-                }
-            })
-            .catch(error => console.error('Error loading issues:', error));
-    }
-
-    function formatDate(issue) {
-        const year = `20${issue.slice(0, 2)}`;
+    function getMonthYear(issue) {
         const monthIndex = parseInt(issue.slice(2, 4), 10) - 1;
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const year = `20${issue.slice(0, 2)}`;
         return `${monthNames[monthIndex]} ${year}`;
     }
 
-    viewMoreButton.addEventListener('click', loadIssues);
+    function loadCovers() {
+        fetch('assets/covers/thumbs/issues.json')
+            .then(response => response.json())
+            .then(covers => {
+                const container = document.getElementById('covers-container');
+                container.innerHTML = '';  // Clear any existing covers
+                covers.forEach(cover => {
+                    const issue = cover.replace('-', '').split('.')[0]; // Remove '-' and extension
+                    const monthYear = getMonthYear(issue);
+                    const coverDiv = document.createElement('div');
+                    coverDiv.classList.add('cover');
+                    coverDiv.innerHTML = `
+                        <div class="cover-date">${monthYear}</div>
+                        <img src="assets/covers/thumbs/${cover}" alt="${cover}">
+                    `;
+                    coverDiv.addEventListener('click', () => {
+                        window.location.href = `issue.html?issue=${issue}`;
+                    });
+                    container.appendChild(coverDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching covers:', error));
+    }
 
-    loadIssues();
+    loadCovers();
 });
