@@ -86,6 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     booksSection.querySelector('.books-container').appendChild(bookDiv);
                 });
                 issueContainer.appendChild(booksSection);
+
+                // Append footer after the books section
+                const footer = document.createElement('footer');
+                footer.innerHTML = `
+                    <div class="footer-banner">
+                        <p>&copy; ${new Date().getFullYear()} Techronical.Online</p>
+                    </div>
+                `;
+                issueContainer.appendChild(footer);
             })
             .catch(error => console.error('Error fetching books:', error));
     }
