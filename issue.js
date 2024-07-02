@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const issueParam = new URLSearchParams(window.location.search).get('issue');
-    const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health', 'books'];
+    const categories = ['biz', 'ai', 'security', 'gadgets', 'robotics', 'health'];
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     function formatDate(issueParam) {
@@ -65,17 +65,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 const issueContainer = document.getElementById('issue-container');
                 const booksSection = document.createElement('div');
                 booksSection.classList.add('category');
-                booksSection.innerHTML = `<img src="assets/logos/books.png" alt="books"><h2>Best New Tech Books</h2>`;
+                booksSection.innerHTML = `
+                    <img src="assets/logos/books.png" alt="books">
+                    <h2>Best New Tech Books</h2>
+                    <div class="books-container">
+                    </div>`;
                 books.forEach(book => {
                     const bookDiv = document.createElement('div');
-                    bookDiv.classList.add('article');
+                    bookDiv.classList.add('book');
                     bookDiv.innerHTML = `
-                        <h3 class="article-title">${book.title}</h3>
-                        <p class="article-author">By ${book.author}</p>
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">By ${book.author}</p>
                         <img src="${book.image}" alt="${book.title}">
                         <p>${book.description.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
                     `;
-                    booksSection.appendChild(bookDiv);
+                    booksSection.querySelector('.books-container').appendChild(bookDiv);
                 });
                 issueContainer.appendChild(booksSection);
             })
@@ -83,10 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     categories.forEach(category => {
-        if (category === 'books') {
-            loadBooks();
-        } else {
-            loadIssueArticles(category);
-        }
+        loadIssueArticles(category);
     });
+
+    loadBooks();
 });
