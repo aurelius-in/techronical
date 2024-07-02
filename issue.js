@@ -100,3 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error fetching books:', error));
     }
 
+    if (issueParam) {
+        categories.forEach(category => {
+            loadIssueArticles(category);
+        });
+
+        loadBooks();
+    }
+});
