@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadIssueArticles(category) {
-        fetch(`assets/articles/${category}${issueParam}.json`)
+        return fetch(`assets/articles/${category}${issueParam}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
                         <p class="article-author">By ${article.author}, ${date}</p>
-                        <img src="${article.image}" alt="${article.title}">
+                        <img src="${article.image}" alt="${article.title}" class="article-image">
                         <p class="article-body">${truncatedBody}</p>
                         <span class="read-more-button" data-fulltext="${article.body}">Read More</span>
                     `;
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadBooks() {
-        fetch(`assets/articles/books${issueParam}.json`)
+        return fetch(`assets/articles/books${issueParam}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -87,16 +87,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     booksSection.querySelector('.books-container').appendChild(bookDiv);
                 });
                 issueContainer.appendChild(booksSection);
-
-                // Append footer after the books section
-                const footer = document.createElement('footer');
-                footer.innerHTML = `
-                    <div class="footer-banner">
-                        <p>&copy; ${new Date().getFullYear()} Techronical.Online</p>
-                    </div>
-                `;
-                issueContainer.appendChild(footer);
             })
             .catch(error => console.error('Error fetching books:', error));
     }
 
+    function loadFooter() {
+        const issueContainer = document.getElementById('issue-container');
+        const footer = document.createElement('footer');
+        footer.innerHTML = `
+            <div class="footer-banner">
+                <p>&copy; ${new Date().getFullYear()} Techronical.Online</p>
+            </div>
+        `;
+        issueContainer.appendChild(footer);
+    }
+
+    Promise.all(categories.map(loadIssueArticles))
+        .then(loadBooks)
+        .then(loadFooter);
+});

@@ -1,0 +1,101 @@
+/* Base styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h3.article-title, h2 {
+    color: #800020; /* Burgundy */
+}
+
+/* Layout styles */
+.banner {
+    background-color: #d3e7f7; /* Light blue */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.logo {
+    max-width: 300px;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.menu img {
+    width: 150px;
+}
+
+.footer-banner {
+    background-color: #d3e7f7; /* Light blue */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.header-banner {
+    background-color: #d3e7f7; /* Light blue */
+    text-align: center;
+    padding: 5px 0;
+}
+
+.header-banner img {
+    width: 50%;
+}
+
+/* Component styles */
+.article {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.article img.article-image {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.book {
+    display: inline-block;
+    width: 45%;
+    margin: 2.5%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.books-container {
+    text-align: center;
+}
+
+.cover {
+    margin: 20px;
+    text-align: center;
+}
+
+.cover img {
+    width: 100%;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.cover-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
