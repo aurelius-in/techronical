@@ -94,6 +94,7 @@ main {
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
+    margin-bottom: 20px; /* Ensure there's space between articles */
 }
 
 .article img {
@@ -149,6 +150,25 @@ main {
 
 .book-author, .book p {
     font-size: 16px;
+}
+
+.header-banner {
+    background-color: #e3f2fd;
+    text-align: center;
+    padding: 10px 0; /* Minimal padding on top and bottom */
+    width: 100%; /* Spanning the width of the visible screen */
+    margin-bottom: 20px; /* Space between banner and content */
+}
+
+.header-banner img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header-banner h2 {
+    margin: 0;
+    font-style: italic; /* Italic text for 'Top Reads' */
+    color: #800020;
 }
 
 @media (max-width: 768px) {
