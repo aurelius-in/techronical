@@ -1,128 +1,41 @@
-header {
-    background-color: #e3f2fd; /* Light soft baby blue background for header */
-    padding: 20px;
-    text-align: center;
-}
-
 .banner {
-    background-color: #e3f2fd; /* Very light soft baby blue background */
-    padding: 20px;
+    background-color: #d3e7f7; /* Light blue */
+    text-align: center;
+    padding: 10px 0;
 }
 
 .logo {
-    max-width: 100%;
-    height: auto;
-}
-
-nav {
-    margin-top: 10px;
+    max-width: 300px;
 }
 
 .menu {
-    list-style: none;
+    list-style-type: none;
+    margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Center align items vertically */
+    text-align: center;
 }
 
 .menu li {
+    display: inline;
     margin: 0 15px;
 }
 
 .menu img {
-    width: 150px; /* Set the width for the navigation images */
-}
-
-main {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.categories-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.covers-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.cover {
-    text-align: center;
-}
-
-.cover-date {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.category, .cover {
-    width: 300px;
-}
-
-.articles-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.article {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    margin-bottom: 20px; /* Ensure there's space between articles */
-}
-
-.books-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.book {
-    width: 300px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
+    width: 150px;
 }
 
 .footer-banner {
-    background-color: #e3f2fd; /* Light soft baby blue background */
+    background-color: #d3e7f7; /* Light blue */
     text-align: center;
-    padding: 20px;
-    margin-top: 20px; /* Space between footer and content */
-    font-size: 18px;
-    color: #800020;
+    padding: 10px 0;
 }
 
-@media (max-width: 768px) {
-    .books-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .header-banner img {
-        max-width: 100%;
-    }
+.header-banner {
+    background-color: #d3e7f7; /* Light blue */
+    text-align: center;
+    padding: 5px 0;
 }
 
-.view-more-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
+.header-banner img {
+    width: 50%;
 }
