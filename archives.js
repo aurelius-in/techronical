@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     function getMonthYear(issue) {
         const monthIndex = parseInt(issue.slice(2, 4), 10) - 1;
