@@ -173,15 +173,6 @@ main {
     color: #800020;
 }
 
-.footer-banner {
-    background-color: #e3f2fd; /* Light soft baby blue background */
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px; /* Space between footer and content */
-    font-size: 18px;
-    color: #800020;
-}
-
 @media (max-width: 768px) {
     .books-container {
         flex-direction: column;
@@ -199,4 +190,10 @@ main {
     background-color: #333;
     color: #fff;
     border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.view-more-button:hover {
+    background-color: #555;
 }
