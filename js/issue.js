@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadIssueArticles(category) {
-        fetch(`assets/articles/${category}${issueParam}.json`)
+        return fetch(`assets/articles/${category}${issueParam}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadBooks() {
-        fetch(`assets/articles/books${issueParam}.json`)
+        return fetch(`assets/articles/books${issueParam}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -87,22 +87,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     booksSection.querySelector('.books-container').appendChild(bookDiv);
                 });
                 issueContainer.appendChild(booksSection);
-
-                // Append footer after the books section
-                const footer = document.createElement('footer');
-                footer.innerHTML = `
-                    <div class="footer-banner">
-                        <p>&copy; ${new Date().getFullYear()} Techronical.Online</p>
-                    </div>
-                `;
-                issueContainer.appendChild(footer);
             })
             .catch(error => console.error('Error fetching books:', error));
     }
 
-    categories.forEach(category => {
-        loadIssueArticles(category);
-    });
+    function loadFooter() {
+        const issueContainer = document.getElementById('issue-container');
+        const footer = document.createElement('footer');
+        footer.innerHTML = `
+            <div class="footer-banner">
+                <p>&copy; ${new Date().getFullYear()} Techronical.Online</p>
+            </div>
+        `;
+        issueContainer.appendChild(footer);
+    }
 
-    loadBooks();
+    Promise.all(categories.map(loadIssueArticles))
+        .then(loadBooks)
+        .then(loadFooter);
 });
