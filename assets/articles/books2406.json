@@ -1,0 +1,26 @@
+[
+    {
+        "title": "The AI-Driven Organization: Strategies for Success",
+        "author": "Oliver A. Ellison",
+        "description": "Unlock the transformative potential of artificial intelligence with 'The AI-Driven Organization: Strategies for Success.' This essential guide offers comprehensive insights into leveraging AI to revolutionize your business operations, enhance decision-making, and drive innovation. Explore practical strategies, real-world applications, and ethical considerations, ensuring your organization stays ahead in the rapidly evolving AI landscape. An important read for business leaders, executives, and any serious AI enthusiast, this book provides the tools and knowledge needed to properly lead AI projects successfully and sustainably.",
+        "image": "assets/images/ai_driven_organization.jpg"
+    },
+    {
+        "title": "Deep Learning with Python",
+        "author": "Francois Chollet",
+        "description": "Written by the creator of Keras, this book offers a practical, hands-on introduction to deep learning with Python. The book covers everything from the basics of neural networks to advanced topics like generative models and deep reinforcement learning. Ideal for both beginners and experienced developers looking to deepen their understanding of deep learning.",
+        "image": "assets/images/deep_learning_python.jpg"
+    },
+    {
+        "title": "Artificial Intelligence: A Modern Approach",
+        "author": "Stuart Russell and Peter Norvig",
+        "description": "This comprehensive textbook is widely regarded as the definitive guide to artificial intelligence. Covering a broad range of AI topics, including machine learning, natural language processing, and robotics, it provides a thorough grounding in the principles and techniques of AI. The fourth edition includes new material on deep learning and the latest advancements in AI research.",
+        "image": "assets/images/ai_modern_approach.jpg"
+    },
+    {
+        "title": "Superintelligence: Paths, Dangers, Strategies",
+        "author": "Nick Bostrom",
+        "description": "Nick Bostrom's seminal work explores the potential future impacts of artificial intelligence and the paths we might take towards developing superintelligent systems. The book delves into the ethical and strategic challenges posed by superintelligent AI and offers insights into how we can navigate these challenges to ensure a beneficial outcome for humanity.",
+        "image": "assets/images/superintelligence.jpg"
+    }
+]
