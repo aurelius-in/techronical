@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archives - Techronical</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Techronical - Archives</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load shared navigation
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nav-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching navigation:', error));
+        });
+    </script>
 </head>
 <body>
-    <header>
-        <img src="assets/logos/techronical.png" alt="Techronical Logo" class="logo">
-        <nav>
-            <ul class="menu">
-                <li><a href="issue.html?issue=2407"><img src="assets/logos/thismonth.png" alt="This Month"></a></li>
-                <li><a href="archives.html"><img src="assets/logos/archives.png" alt="Archives"></a></li>
-            </ul>
-        </nav>
+    <header class="banner">
+        <img src="assets/logos/techronical.png" alt="Techronical" class="logo">
+        <div id="nav-container"></div>
     </header>
     <main>
-        <div class="covers-container">
-            <!-- Archive covers will be loaded here -->
+        <div class="covers-container" id="covers-container">
+            <!-- Covers will be loaded dynamically here -->
         </div>
-        <button id="view-more-button" class="view-more-button">View More</button>
     </main>
-    <footer>
-        <p>&copy; 2024 TeChronical.online</p>
-    </footer>
-    <script src="assets/js/archives.js"></script>
+    <script src="archives.js"></script>
 </body>
 </html>
