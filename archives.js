@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     function getMonthYear(issue) {
         const monthIndex = parseInt(issue.slice(2, 4), 10) - 1;
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const container = document.getElementById('covers-container');
                 container.innerHTML = '';  // Clear any existing covers
                 covers.forEach(cover => {
-                    const issue = cover.replace('-', '').split('.')[0]; // Remove '-' and extension
+                    const issue = cover.replace('.png', '').replace('-', ''); // Remove '-' and extension
                     const monthYear = getMonthYear(issue);
                     const coverDiv = document.createElement('div');
                     coverDiv.classList.add('cover');
