@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techronical Issue</title>
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
+    <title>Techronical - Issue</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load shared navigation
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nav-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching navigation:', error));
+        });
+    </script>
 </head>
 <body>
-    <header>
-        <div class="banner">
-            <img src="assets/logos/techronical.png" alt="Techronical Logo" class="logo">
-        </div>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html"><img src="assets/logos/thismonth.png" alt="This Month" width="150"></a></li>
-                <li><a href="archives.html"><img src="assets/logos/archives.png" alt="Archives" width="150"></a></li>
-            </ul>
-        </nav>
+    <header class="banner">
+        <img src="assets/logos/techronical.png" alt="Techronical" class="logo">
+        <div id="nav-container"></div>
     </header>
     <main>
-        <div id="issue-container"></div>
+        <div id="issue-container">
+            <!-- Articles will be loaded dynamically here -->
+        </div>
     </main>
-    <footer class="footer-banner">
-        <p>&copy; 2024 Techronical.Online</p>
-    </footer>
-    <script src="js/issue.js"></script>
+    <script src="issue.js"></script>
 </body>
 </html>
