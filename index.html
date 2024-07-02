@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=issue.html?issue=2407">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techronical</title>
+    <title>Techronical - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>If you are not redirected, <a href="issue.html?issue=2407">click here</a>.</p>
+    <header class="banner">
+        <img src="assets/logos/techronical.png" alt="Techronical" class="logo">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html"><img src="assets/logos/thismonth.png" alt="This Month"></a></li>
+                <li><a href="archives.html"><img src="assets/logos/archives.png" alt="Archives"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="issue-container" id="issue-container">
+            <!-- Articles will be listed here -->
+        </div>
+        <div class="article-container" id="article-container" style="display:none;">
+            <!-- Full article content will be shown here -->
+        </div>
+    </main>
+    <script src="issue.js"></script>
 </body>
 </html>
