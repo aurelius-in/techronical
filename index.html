@@ -1,10 +1,24 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techronical - Home</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch the latest issue dynamically
+            fetch('assets/covers/thumbs/issues.json')
+                .then(response => response.json())
+                .then(covers => {
+                    if (covers && covers.length > 0) {
+                        const latestIssue = covers[0].replace('-', '').split('.')[0]; // Get the most recent issue
+                        window.location.href = `issue.html?issue=${latestIssue}`;
+                    }
+                })
+                .catch(error => console.error('Error fetching covers:', error));
+        });
+    </script>
 </head>
 <body>
     <header class="banner">
@@ -16,14 +30,5 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <div class="issue-container" id="issue-container">
-            <!-- Articles will be listed here -->
-        </div>
-        <div class="article-container" id="article-container" style="display:none;">
-            <!-- Full article content will be shown here -->
-        </div>
-    </main>
-    <script src="issue.js"></script>
 </body>
 </html>
