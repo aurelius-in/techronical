@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     articleDiv.classList.add('article');
                     const truncatedBody = truncateText(article.body, 120);
                     articleDiv.innerHTML = `
-                        <img src="assets/logos/${category}.png" alt="${category}">
+                        <img src="assets/logos/${category}.png" alt="${category}" style="width: 100%; max-width: 400px; margin-bottom: 10px;">
                         <h3 class="article-title" data-category="${category}" data-title="${article.title}">${article.title}</h3>
                         <p class="article-author">By ${article.author}, ${date}</p>
                         <p class="article-body">${truncatedBody}</p>
@@ -64,13 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(books => {
                 const issueContainer = document.getElementById('issue-container');
                 const booksSection = document.createElement('div');
-                booksSection.classList.add('category');
+                booksSection.classList.add('article'); // Use the same class as other articles for consistent styling
                 booksSection.innerHTML = `
-                    <div class="article">
-                        <img src="assets/logos/books.png" alt="books">
-                        <h2>Best New Tech Books</h2>
-                        <div class="books-container"></div>
-                    </div>`;
+                    <img src="assets/logos/books.png" alt="books" style="width: 100%; max-width: 400px; margin-bottom: 10px;">
+                    <h2><i>Top Reads</i></h2>
+                    <div class="books-container"></div>
+                `;
                 books.forEach(book => {
                     const bookDiv = document.createElement('div');
                     bookDiv.classList.add('book');
